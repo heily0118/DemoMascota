@@ -8,6 +8,8 @@ import autonoma.demomascota.elements.GraphicContainer;
 import autonoma.demomascota.elements.Jardin;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 /**
  *
@@ -26,6 +28,22 @@ public class VentanaPrincipal extends javax.swing.JFrame  implements GraphicCont
         initComponents();
         this.jardin = jardin; 
         setLocationRelativeTo(null); 
+        
+        
+         this.addMouseMotionListener(new MouseMotionAdapter() {
+        @Override
+        public void mouseMoved(MouseEvent e) {
+          
+            int mouseX = e.getX();
+            int mouseY = e.getY();
+            
+          
+            jardin.moverMascotaHacia(mouseX, mouseY);
+            
+           
+            repaint();
+        }
+    });
         
     }
 

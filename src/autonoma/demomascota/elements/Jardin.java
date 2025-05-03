@@ -71,4 +71,20 @@ public class Jardin  extends SpriteContainer{
         return new Rectangle(x, y, width, height);
     }
     
+    
+    public void moverMascotaHacia(int objetivoX, int objetivoY) {
+        if (mascota != null) {
+            int dx = objetivoX - mascota.getX();
+            int dy = objetivoY - mascota.getY();
+
+           
+            int velocidad = 5;
+            if (Math.abs(dx) > velocidad) dx = velocidad * Integer.signum(dx);
+            if (Math.abs(dy) > velocidad) dy = velocidad * Integer.signum(dy);
+
+            mascota.setX(mascota.getX() + dx);
+            mascota.setY(mascota.getY() + dy);
+        }
+    }
+    
 }
