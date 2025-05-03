@@ -17,7 +17,7 @@ public abstract class SpriteContainer  extends Sprite implements GraphicContaine
     
      protected ArrayList<Sprite> sprites;  
 
-    public SpriteContainer(ArrayList<Sprite> sprites, int x, int y, int height, int width) {
+    public SpriteContainer( int x, int y, int height, int width) {
         super(x, y, height, width);
         
         sprites = new ArrayList<Sprite>();

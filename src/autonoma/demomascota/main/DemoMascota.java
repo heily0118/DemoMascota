@@ -24,13 +24,13 @@ public class DemoMascota {
     public static void main(String[] args) {
         // TODO code application logic here
         
-         Mascota miMascota = new Mascota("Luna",100, 100, 64, 64); 
+         
 
         
-        ArrayList<Sprite> sprites = new ArrayList<>();
+       
         
         
-        Jardin jardin = new Jardin(miMascota, sprites, 0, 0, 800, 600); 
+       Jardin jardin = new Jardin(0, 0, 600, 800); 
         
         VentanaPrincipal ventana = new VentanaPrincipal (jardin);
         ventana.setVisible(true);

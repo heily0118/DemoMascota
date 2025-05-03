@@ -20,9 +20,13 @@ public class Jardin  extends SpriteContainer{
     
     protected Mascota mascota;
 
-    public Jardin(Mascota mascota, ArrayList<Sprite> sprites, int x, int y, int height, int width) {
-        super(sprites, x, y, height, width);
-        this.mascota = mascota;
+    public Jardin(int x, int y, int height, int width) {
+        super( x, y, height, width);
+       
+        
+      
+        addMascota();
+        
     }
 
     public Mascota getMascota() {
@@ -33,6 +37,13 @@ public class Jardin  extends SpriteContainer{
         this.mascota = mascota;
     }
     
+    
+     private void addMascota(){
+        Mascota miMascota = new Mascota("Luna", 100, 100, 64, 64); 
+        miMascota.setGraphicContainer(this);
+        this.mascota = miMascota; 
+        sprites.add(miMascota);
+    }
     
         @Override
     public void paint(Graphics g) {

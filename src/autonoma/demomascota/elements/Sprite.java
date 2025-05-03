@@ -105,7 +105,9 @@ public abstract class Sprite {
      */
     public abstract Rectangle getBoundaries();
      
-    
+     public void setGraphicContainer(GraphicContainer gContainer) {
+        this.gameContainer = gContainer;
+    }
     
     
     
