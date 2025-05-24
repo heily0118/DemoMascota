@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
-*  @author Heily Yohana Rios Ayala <heilyy.riosa@gmail.com>
+*  @author Heily Yohana Rios Ayala <heilyy.riosa@autonoma.edu.co>
  * @since 20250503
  * @version 1.0.0
  */
