@@ -6,8 +6,10 @@ package autonoma.demomascota.elements;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -16,75 +18,25 @@ import java.util.ArrayList;
  * @version 1.0.0
  */
 
-public class Jardin  extends SpriteContainer{
-    
-    protected Mascota mascota;
 
-    public Jardin(int x, int y, int height, int width) {
-        super( x, y, height, width);
-       
-        
-      
-        addMascota();
-        
-    }
+public class Jardin {
 
-    public Mascota getMascota() {
-        return mascota;
-    }
+    private Mascota mascota;
+    private Image jardinImage;
 
-    public void setMascota(Mascota mascota) {
+    public Jardin(Mascota mascota) {
         this.mascota = mascota;
-    }
-    
-    
-     private void addMascota(){
-        Mascota miMascota = new Mascota("Luna", 100, 100, 64, 64); 
-        miMascota.setGraphicContainer(this);
-        this.mascota = miMascota; 
-        sprites.add(miMascota);
-    }
-    
-        @Override
-    public void paint(Graphics g) {
-        g.setColor(new Color(144, 238, 144)); 
-        g.fillRect(x, y, width, height);
-
-        for (Sprite sprite : sprites) {
-            sprite.paint(g);
-        }
-
-        if (mascota != null) {
-            mascota.paint(g);
-        }
-    
+        this.jardinImage = new ImageIcon(getClass().getResource("/autonoma/demomascota/images/Jardin.jpg")).getImage();
+        new Thread(mascota).start();
     }
 
-    @Override
-    public void refresh() {
-        if(gameContainer != null)
-            gameContainer.refresh();
+    public void moverMascotaHacia(int x, int y) {
+        mascota.setDestino(x, y);
     }
 
-     @Override
-    public Rectangle getBoundaries() {
-        return new Rectangle(x, y, width, height);
+    public void paint(Graphics g, int ancho, int alto) {
+        
+        g.drawImage(jardinImage, 0, 0, ancho, alto, null);
+        mascota.paint(g);
     }
-    
-    
-    public void moverMascotaHacia(int objetivoX, int objetivoY) {
-        if (mascota != null) {
-            int dx = objetivoX - mascota.getX();
-            int dy = objetivoY - mascota.getY();
-
-           
-            int velocidad = 5;
-            if (Math.abs(dx) > velocidad) dx = velocidad * Integer.signum(dx);
-            if (Math.abs(dy) > velocidad) dy = velocidad * Integer.signum(dy);
-
-            mascota.setX(mascota.getX() + dx);
-            mascota.setY(mascota.getY() + dy);
-        }
-    }
-    
 }

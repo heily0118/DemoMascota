@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
-*  @author Heily Yohana Rios Ayala <heilyy.riosa@gmail.com>
+*  @author Heily Yohana Rios Ayala <heilyy.riosa@autonoma.edu.co>
  * @since 20250503
  * @version 1.0.0
  */
@@ -23,16 +23,9 @@ public class DemoMascota {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-         
-
-        
-       
-        
-        
-       Jardin jardin = new Jardin(0, 0, 600, 800); 
-        
-        VentanaPrincipal ventana = new VentanaPrincipal (jardin);
+         Mascota miMascota = new Mascota("Luna", 5, 100, 100, 64, 64); 
+        Jardin jardin = new Jardin(miMascota);
+        VentanaPrincipal ventana = new VentanaPrincipal(jardin);
         ventana.setVisible(true);
     }
     

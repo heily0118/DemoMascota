@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -20,31 +21,26 @@ import java.awt.event.MouseMotionAdapter;
 public class VentanaPrincipal extends javax.swing.JFrame  implements GraphicContainer {
     
     protected Jardin jardin;
+    private BufferedImage buffer;
+
 
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal(Jardin jardin) {
         initComponents();
-        this.jardin = jardin; 
-        setLocationRelativeTo(null); 
-        
-        
-         this.addMouseMotionListener(new MouseMotionAdapter() {
-        @Override
-        public void mouseMoved(MouseEvent e) {
-          
-            int mouseX = e.getX();
-            int mouseY = e.getY();
-            
-          
-            jardin.moverMascotaHacia(mouseX, mouseY);
-            
-           
-            repaint();
-        }
-    });
-        
+        this.jardin = jardin;
+        setSize(700, 600);
+        setLocationRelativeTo(null);
+        setResizable(false);
+
+        this.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                jardin.moverMascotaHacia(e.getX(), e.getY());
+                repaint();
+            }
+        });
     }
 
     /**
@@ -79,10 +75,23 @@ public class VentanaPrincipal extends javax.swing.JFrame  implements GraphicCont
  
         @Override
     public void paint(Graphics g) {
-        super.paint(g); 
-    
-        if(jardin != null)
-            jardin.paint(g);
+      if (buffer == null || buffer.getWidth() != getWidth() || buffer.getHeight() != getHeight()) {
+        buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        }
+
+        Graphics g2 = buffer.getGraphics();
+        
+        g2.clearRect(0, 0, buffer.getWidth(), buffer.getHeight());
+
+       
+        if (jardin != null) {
+            jardin.paint(g2, getWidth(), getHeight());
+        }
+
+        g2.dispose();
+
+       
+        g.drawImage(buffer, 0, 0, null);
     }
 
     @Override
